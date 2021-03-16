@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jade Delight</title>
+    <meta name="author" content="Lisa Diorio" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <script language="javascript">
+      // MenuItem property
+      function MenuItem(name, cost) {
+        this.name = name;
+        this.cost = cost;
+      }
+
+      menuItems = new Array(
+        new MenuItem("Chicken Chop Suey", 4.5),
+        new MenuItem("Sweet and Sour Pork", 6.25),
+        new MenuItem("Shrimp Lo Mein", 5.25),
+        new MenuItem("Moo Shi Chicken", 6.5),
+        new MenuItem("Fried Rice", 2.35)
+      );
+
+      function makeSelect(name, minRange, maxRange) {
+        var t = "";
+        t = "<select name='" + name + "' size='1'>";
+        for (j = minRange; j <= maxRange; j++)
+          t += "<option>" + j + "</option>";
+        t += "</select>";
+        return t;
+      }
+    </script>
+    <main class="content">
+      <h1 style="font-size: 2em; margin: 1rem 0rem 1rem 0rem">Jade Delight</h1>
+      <form id="order-form">
+        <p style="margin-bottom: 0.5rem">
+          First Name: <input type="text" name="fname" />
+        </p>
+        <p style="margin-bottom: 0.5rem">
+          Last Name*: <input type="text" name="lname" />
+        </p>
+        <p id="street" style="margin-bottom: 0.5rem">
+          Street: <input type="text" name="street" />
+        </p>
+        <p id="city" style="margin-bottom: 0.5rem">
+          City: <input type="text" name="city" />
+        </p>
+        <p style="margin-bottom: 0.5rem">
+          Phone*: <input type="text" name="phone" />
+        </p>
+        <p>
+          <input
+            class="radio-button"
+            id="pickup-radio"
+            type="radio"
+            name="p_or_d"
+            value="pickup"
+            checked="checked"
+          />Pickup
+          <input
+            class="radio-button"
+            id="delivery-radio"
+            type="radio"
+            name="p_or_d"
+            value="delivery"
+          />
+          Delivery
+        </p>
+        <table style="border: 0; margin: 1rem 0rem 1rem 0rem">
+          <tr>
+            <th style="padding-bottom: 0.5rem">Select Item</th>
+            <th style="padding-bottom: 0.5rem">Item Name</th>
+            <th style="padding-bottom: 0.5rem">Cost Each</th>
+            <th style="padding-bottom: 0.5rem">Total Cost</th>
+          </tr>
+          <script language="javascript">
+            var s = "";
+            for (i = 0; i < menuItems.length; i++) {
+              s += "<tr><td>";
+              s += makeSelect("quan" + i, 0, 10);
+              s += "</td><td>" + menuItems[i].name + "</td>";
+              s += "<td> $ " + menuItems[i].cost.toFixed(2) + "</td>";
+              s += "<td>$<input type='text' name='cost'/></td></tr>";
+            }
+            document.writeln(s);
+          </script>
+        </table>
+        <div style="margin: 1rem 0rem 1rem 0rem">
+          <p style="margin-bottom: 0.5rem">
+            Subtotal: $ &nbsp;
+            <input type="text" name="subtotal" id="subtotal" />
+          </p>
+          <p style="margin-bottom: 0.5rem">
+            Mass tax 6.25%: $ &nbsp; <input type="text" name="tax" id="tax" />
+          </p>
+          <p style="margin-bottom: 0.5rem">
+            Total: $ &nbsp; <input type="text" name="total" id="total" />
+          </p>
+        </div>
+        <input style="padding: 0.4rem" type="submit" value="Submit Order" />
+      </form>
+      <div id="summary"></div>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>
